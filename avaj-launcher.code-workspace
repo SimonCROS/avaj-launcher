@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"extensions": {
+		"recommendations": [
+			"vscjava.vscode-java-pack",
+			"PKief.material-icon-theme"
+		]
+	},
+	"settings": {
+		"material-icon-theme.activeIconPack": "none"
+	}
+}
