@@ -13,20 +13,20 @@ public class Simulator {
 
 	public static void main(String[] args) {
 		if (args.length != 1) {
-			System.err.println("Only one parameter allowed.");
+			System.out.println("Only one parameter allowed.");
 			System.exit(1);
 		}
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(args[0]), StandardCharsets.UTF_8);
 			lines.forEach(System.out::println);
 		} catch (NoSuchFileException e) {
-			System.err.println(args[0] + " not found");
+			System.out.println(args[0] + " not found");
 			System.exit(1);
 		} catch (AccessDeniedException e) {
-			System.err.println("Read permission denied on " + args[0]);
+			System.out.println("Read permission denied on " + args[0]);
 			System.exit(1);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println(e.toString());
 			System.exit(1);
 		}
 

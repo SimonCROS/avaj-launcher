@@ -15,6 +15,6 @@ public abstract class Tower {
 	}
 
 	protected void conditionsChanged() {
-
+		this.observers.forEach(Flyable::updateConditions);
 	}
 }

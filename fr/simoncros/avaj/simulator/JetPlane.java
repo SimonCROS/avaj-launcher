@@ -9,7 +9,35 @@ public class JetPlane extends Aircraft implements Flyable {
 
 	@Override
 	public void updateConditions() {
-		
+		String weather = this.weatherTower.getWeather(this.coordinates);
+		switch (weather) {
+			case "RAIN":
+				this.coordinates = new Coordinates(
+						this.coordinates.getLongitude(),
+						this.coordinates.getLatitude() + 5,
+						this.coordinates.getHeight());
+				break;
+			case "FOG":
+				this.coordinates = new Coordinates(
+						this.coordinates.getLongitude(),
+						this.coordinates.getLatitude() + 1,
+						this.coordinates.getHeight());
+				break;
+			case "SUN":
+				this.coordinates = new Coordinates(
+						this.coordinates.getLongitude(),
+						this.coordinates.getLatitude() + 10,
+						this.coordinates.getHeight() + 2);
+				break;
+			case "SNOW":
+				this.coordinates = new Coordinates(
+						this.coordinates.getLongitude(),
+						this.coordinates.getLatitude(),
+						this.coordinates.getHeight() - 7);
+				break;
+			default:
+				break;
+		}
 	}
 
 	@Override
