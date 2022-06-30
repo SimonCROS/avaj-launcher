@@ -2,7 +2,7 @@ package fr.simoncros.avaj.simulator;
 
 public class WeatherProvider {
 	private static WeatherProvider weatherProvider;
-	private static String[] weather = {"RAIN", "FOG", "SUN", "SLOW"};
+	private static String[] weather = { "RAIN", "FOG", "SUN", "SLOW" };
 
 	private WeatherProvider() {
 		WeatherProvider.weatherProvider = this;
@@ -13,9 +13,7 @@ public class WeatherProvider {
 	}
 
 	public String getCurrentWeather(Coordinates coordinates) {
-		int lo = coordinates.getLongitude() / 16 % weather.length;
-		int la = coordinates.getLatitude() / 16 % weather.length;
-		int he = coordinates.getHeight() / 16 % weather.length;
-		return weather[(lo + la + he) % weather.length];
+		return weather[(coordinates.getLongitude() + coordinates.getLatitude() + coordinates.getHeight())
+				% weather.length];
 	}
 }
