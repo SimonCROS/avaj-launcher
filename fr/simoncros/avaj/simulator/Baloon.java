@@ -15,33 +15,32 @@ public class Baloon extends Aircraft implements Flyable {
 		String weather = this.weatherTower.getWeather(this.coordinates);
 		switch (weather) {
 			case "RAIN":
+				Logs.print(this + ": Oh no, I don't like water!");
 				he -= 5;
-				// LOG
 				break;
 			case "FOG":
+				Logs.print(this + ": Oh no, I don't like fog!");
 				he -= 3;
-				// LOG
 				break;
 			case "SUN":
+				Logs.print(this + ": Oh no, I don't like sun!");
 				lo += 2;
 				he += 4;
-				// LOG
 				break;
 			case "SNOW":
+				Logs.print(this + ": Oh no, I don't like snow!");
 				he -= 15;
-				// LOG
 				break;
 			default:
 				break;
 		}
-		if (he <= 0) {
-			he = 0;
-			// LOG
-		}
-		if (he > 100) {
-			he = 100;
-		}
+		he = Math.max(0, Math.min(he, 100));
 		this.coordinates = new Coordinates(lo, la, he);
+		if (this.coordinates.getHeight() == 0) {
+			Logs.print(this + " landing at " + this.coordinates);
+			if (this.weatherTower != null)
+				this.weatherTower.unregister(this);
+		}
 	}
 
 	@Override

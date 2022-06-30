@@ -15,29 +15,32 @@ public class Helicopter extends Aircraft implements Flyable {
 		String weather = this.weatherTower.getWeather(this.coordinates);
 		switch (weather) {
 			case "RAIN":
+				Logs.print(this + ": I divide the drops into smaller drops");
 				lo += 5;
 				break;
 			case "FOG":
+				Logs.print(this + ": Let's pray that there is no mountain...");
 				lo += 1;
 				break;
 			case "SUN":
+				Logs.print(this + ": It's time to take photos");
 				lo += 10;
 				he += 2;
 				break;
 			case "SNOW":
+				Logs.print(this + ": The landscapes are beautiful in white");
 				he -= 12;
 				break;
 			default:
 				break;
 		}
-		if (he <= 0) {
-			he = 0;
-			// PRINT
-		}
-		if (he > 100) {
-			he = 100;
-		}
+		he = Math.max(0, Math.min(he, 100));
 		this.coordinates = new Coordinates(lo, la, he);
+		if (this.coordinates.getHeight() == 0) {
+			Logs.print(this + " landing at " + this.coordinates);
+			if (this.weatherTower != null)
+				this.weatherTower.unregister(this);
+		}
 	}
 
 	@Override

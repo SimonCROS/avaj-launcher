@@ -7,17 +7,18 @@ public abstract class Tower {
 	private List<Flyable> observers = new ArrayList<>();
 
 	public void register(Flyable flyable) {
-		// LOG
+		Logs.print("Tower says: " + flyable + " registered to weather tower.");
 		this.observers.add(flyable);
 	}
 
 	public void unregister(Flyable flyable) {
-		// LOG
+		Logs.print("Tower says: " + flyable + " unregistered from weather tower.");
 		this.observers.remove(flyable);
 	}
 
 	protected void conditionsChanged() {
-		for (Flyable flyable : this.observers)
+		List<Flyable> immutable = new ArrayList<>(this.observers);
+		for (Flyable flyable : immutable)
 			flyable.updateConditions();
 	}
 }

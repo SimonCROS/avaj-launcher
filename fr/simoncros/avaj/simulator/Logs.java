@@ -1,6 +1,5 @@
 package fr.simoncros.avaj.simulator;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -11,11 +10,11 @@ import java.util.List;
 public abstract class Logs {
 	private static List<String> lines = new ArrayList<>();
 
-	public static void log(String line) {
+	public static void print(String line) {
 		lines.add(line);
 	}
 
-	public static void write() throws IOException {
-		Files.write(Paths.get("simulation.txt"), Logs.lines, StandardCharsets.UTF_8);
+	public static void write(String dest) throws IOException {
+		Files.write(Paths.get(dest), Logs.lines, StandardCharsets.UTF_8);
 	}
 }

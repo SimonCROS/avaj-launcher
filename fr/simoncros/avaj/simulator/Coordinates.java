@@ -22,4 +22,9 @@ public class Coordinates {
 	public int getHeight() {
 		return this.height;
 	}
+
+	@Override
+	public String toString() {
+		return this.getLongitude() + " " + getLatitude() + " " + getHeight();
+	}
 }
