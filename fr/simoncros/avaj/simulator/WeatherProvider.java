@@ -1,7 +1,7 @@
 package fr.simoncros.avaj.simulator;
 
 public class WeatherProvider {
-	private static WeatherProvider weatherProvider;
+	private static WeatherProvider weatherProvider = new WeatherProvider();
 	private static String[] weather = { "RAIN", "FOG", "SUN", "SNOW" };
 
 	private WeatherProvider() {
@@ -9,8 +9,6 @@ public class WeatherProvider {
 	}
 
 	public static WeatherProvider getProvider() {
-		if (WeatherProvider.weatherProvider == null)
-			WeatherProvider.weatherProvider = new WeatherProvider();
 		return WeatherProvider.weatherProvider;
 	}
 
